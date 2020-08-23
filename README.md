@@ -14,4 +14,4 @@ Works with open directories in Nginx and Apache servers.
 
 
 ## To-do
-[ ] Fix dependency on file/folder structure
+- [ ] Fix dependency on file/folder structure
