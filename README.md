@@ -11,3 +11,7 @@ Works with open directories in Nginx and Apache servers.
 ```
 
 ![Use Case](https://raw.githubusercontent.com/az0mb13/Rexel/master/usecase.png)
+
+
+## To-do
+[ ] Fix dependency on file/folder structure
