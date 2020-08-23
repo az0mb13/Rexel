@@ -23,14 +23,14 @@ for key in "${!dir_list[@]}"; do
     ((inc++))
 done
 
+printf '\n\n'
+
 read -p 'Enter directory number to navigate: ' choice
 KEYS=("${!dir_list[@]}")
 selected_key=${KEYS[$((choice-1))]} 
 selected_value=${dir_list[$selected_key]}
 
 printf '\n'
-
-#for files
 
 curl_out=`curl -s $selected_value > curl_outfile`
 file_names=($(grep -o '">.*<' curl_outfile))
@@ -40,7 +40,6 @@ file_url=$selected_value
 declare -A file_list
 
 for ((i=0;i<${#file_names[@]}; i++)); do
-    #echo "${file_names[$i]:2:-1} -----> $file_url${file_urls[$i]}"
     file_list[${file_names[$i]:2:-1}]=$file_url${file_urls[$i]}
 done
 
@@ -50,13 +49,29 @@ for key2 in "${!file_list[@]}"; do
     ((incc++))
 done
 
+printf '\n\n'
+
 read -p 'Select which file to download or Enter "A" to download all files: ' filechoice
 
+printf '\n\n'
+
+KEYS_file=("${!file_list[@]}")
+selected_key_file=${KEYS_file[$((filechoice-1))]} 
+selected_value_file=${file_list[$selected_key_file]}
+
+
 if [ "$filechoice" = "A" ]; then
-    mkdir $selected_key
+
+    [ ! -d "$selected_key" ] && mkdir $selected_key
+
     for dk in "${!file_list[@]}"; do
         echo "${file_list[$dk]}";
         cd $selected_key
         axel -n 8 -a ${file_list[$dk]}
     done
+else
+    [ ! -d "$selected_key" ] && mkdir $selected_key
+    cd $selected_key
+    axel -n 8 -a $selected_value_file
 fi
+
