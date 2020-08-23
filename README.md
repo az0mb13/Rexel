@@ -10,4 +10,4 @@ Works with open directories in Nginx and Apache servers.
 ./rexel.sh https://server-url/downloads/
 ```
 
-![alt text](https://raw.githubusercontent.com/az0mb13/Rexel/master/usecase.png)
+![Use Case](https://raw.githubusercontent.com/az0mb13/Rexel/master/usecase.png)
